@@ -779,6 +779,7 @@ Soft Skills & Languages
 </div>
 </div>
 </div>
+</div>
 </section>
 <!-- Contact Section -->
 <section id="contact" class="py-20 bg-[#121212]">
@@ -786,22 +787,22 @@ Soft Skills & Languages
 <h2 class="text-3xl font-bold text-white mb-12 text-center">Get in Touch</h2>
 <div class="flex flex-col md:flex-row gap-12">
 <div class="md:w-1/2">
-<form class="space-y-6">
+<form action="https://formspree.io/f/alexander.karl.richard.rothschild@student.hu-berlin.de" method="POST" class="space-y-6">
 <div>
 <label for="name" class="block text-gray-300 mb-2">Name</label>
-<input type="text" id="name" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your name">
+<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your name" required>
 </div>
 <div>
 <label for="email" class="block text-gray-300 mb-2">Email</label>
-<input type="email" id="email" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your email address">
+<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your email address" required>
 </div>
 <div>
 <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-<input type="text" id="subject" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Subject of your message">
+<input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Subject of your message" required>
 </div>
 <div>
 <label for="message" class="block text-gray-300 mb-2">Message</label>
-<textarea id="message" rows="5" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your message"></textarea>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your message" required></textarea>
 </div>
 <button type="submit" class="bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-button transition-all whitespace-nowrap">Send Message</button>
 </form>
@@ -825,7 +826,7 @@ Soft Skills & Languages
 </div>
 <div>
 <h4 class="text-white font-medium mb-1">Email</h4>
-<a href="mailto:alexander.rothschild@informatik.hu-berlin.de" class="text-gray-300 hover:text-primary transition-colors">alexander.rothschild@informatik.hu-berlin.de</a>
+<a href="#" onclick="showEmail()" class="text-gray-300 hover:text-primary transition-colors" id="emailLink">Click to reveal email</a>
 </div>
 </div>
 <div class="flex items-start">
@@ -948,144 +949,156 @@ Soft Skills & Languages
 </footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-// GitHub Modal Functionality
-const githubLink = document.getElementById('githubLink');
-const githubModal = document.getElementById('githubModal');
-const closeGithubModal = document.getElementById('closeGithubModal');
-githubLink.addEventListener('click', () => {
-githubModal.classList.remove('hidden');
-document.body.style.overflow = 'hidden';
-});
-closeGithubModal.addEventListener('click', () => {
-githubModal.classList.add('hidden');
-document.body.style.overflow = 'auto';
-});
-githubModal.addEventListener('click', (e) => {
-if (e.target === githubModal) {
-githubModal.classList.add('hidden');
-document.body.style.overflow = 'auto';
-}
-});
-document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape' && !githubModal.classList.contains('hidden')) {
-githubModal.classList.add('hidden');
-document.body.style.overflow = 'auto';
-}
-});
-const allFilterBtn = document.getElementById('allFilter');
-const mlFilterBtn = document.getElementById('mlFilter');
-const webFilterBtn = document.getElementById('webFilter');
-const researchFilterBtn = document.getElementById('researchFilter');
-const projectCards = document.querySelectorAll('.project-card');
-function setActiveFilter(activeBtn) {
-[allFilterBtn, mlFilterBtn, webFilterBtn, researchFilterBtn].forEach(btn => {
-btn.classList.remove('bg-primary', 'text-white');
-btn.classList.add('text-gray-300');
-});
-activeBtn.classList.remove('text-gray-300');
-activeBtn.classList.add('bg-primary', 'text-white');
-}
-allFilterBtn.addEventListener('click', () => {
-setActiveFilter(allFilterBtn);
-projectCards.forEach(card => {
-card.style.display = 'block';
-card.style.animation = 'fadeIn 0.5s ease';
-});
-});
-mlFilterBtn.addEventListener('click', () => {
-setActiveFilter(mlFilterBtn);
-projectCards.forEach(card => {
-if (card.getAttribute('data-category') === 'ml') {
-card.style.display = 'block';
-card.style.animation = 'fadeIn 0.5s ease';
-} else {
-card.style.display = 'none';
-}
-});
-});
-webFilterBtn.addEventListener('click', () => {
-setActiveFilter(webFilterBtn);
-projectCards.forEach(card => {
-if (card.getAttribute('data-category') === 'web') {
-card.style.display = 'block';
-card.style.animation = 'fadeIn 0.5s ease';
-} else {
-card.style.display = 'none';
-}
-});
-});
-researchFilterBtn.addEventListener('click', () => {
-setActiveFilter(researchFilterBtn);
-projectCards.forEach(card => {
-if (card.getAttribute('data-category') === 'research') {
-card.style.display = 'block';
-card.style.animation = 'fadeIn 0.5s ease';
-} else {
-card.style.display = 'none';
-}
-});
-});
-// Mobile menu toggle
-const mobileMenuButton = document.getElementById('mobileMenuButton');
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenuButton.addEventListener('click', function() {
-mobileMenu.classList.toggle('hidden');
-if (mobileMenu.classList.contains('hidden')) {
-mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
-} else {
-mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
-}
-});
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', function() {
-if (window.scrollY > 50) {
-navbar.classList.add('bg-[#0F0F0F]', 'shadow-md');
-navbar.classList.remove('bg-transparent');
-} else {
-navbar.classList.remove('bg-[#0F0F0F]', 'shadow-md');
-navbar.classList.add('bg-transparent');
-}
-});
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function(e) {
-e.preventDefault();
-// Close mobile menu if open
-if (!mobileMenu.classList.contains('hidden')) {
-mobileMenu.classList.add('hidden');
-mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
-}
-const targetId = this.getAttribute('href');
-if (targetId === '#') return;
-const targetElement = document.querySelector(targetId);
-if (targetElement) {
-window.scrollTo({
-top: targetElement.offsetTop - 80,
-behavior: 'smooth'
-});
-}
-});
-});
-// Active link highlighting
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', function() {
-let current = '';
-sections.forEach(section => {
-const sectionTop = section.offsetTop;
-const sectionHeight = section.clientHeight;
-if (window.scrollY >= sectionTop - 100) {
-current = section.getAttribute('id');
-}
-});
-navLinks.forEach(link => {
-link.classList.remove('active');
-if (link.getAttribute('href') === `#${current}`) {
-link.classList.add('active');
-}
-});
-});
+    // GitHub Modal Functionality
+    const githubLink = document.getElementById('githubLink');
+    const githubModal = document.getElementById('githubModal');
+    const closeGithubModal = document.getElementById('closeGithubModal');
+    githubLink.addEventListener('click', () => {
+        githubModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    });
+    closeGithubModal.addEventListener('click', () => {
+        githubModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    });
+    githubModal.addEventListener('click', (e) => {
+        if (e.target === githubModal) {
+            githubModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !githubModal.classList.contains('hidden')) {
+            githubModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Email protection
+    function showEmail() {
+        const emailLink = document.getElementById('emailLink');
+        const email = ['alexander', '.', 'karl', '.', 'richard', '.', 'rothschild', '@', 'student', '.', 'hu-berlin', '.', 'de'].join('');
+        emailLink.href = 'mailto:' + email;
+        emailLink.textContent = email;
+        emailLink.onclick = null;
+        return false;
+    }
+
+    // Project filtering
+    const allFilterBtn = document.getElementById('allFilter');
+    const mlFilterBtn = document.getElementById('mlFilter');
+    const webFilterBtn = document.getElementById('webFilter');
+    const researchFilterBtn = document.getElementById('researchFilter');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    function setActiveFilter(activeBtn) {
+        [allFilterBtn, mlFilterBtn, webFilterBtn, researchFilterBtn].forEach(btn => {
+            btn.classList.remove('bg-primary', 'text-white');
+            btn.classList.add('text-gray-300');
+        });
+        activeBtn.classList.remove('text-gray-300');
+        activeBtn.classList.add('bg-primary', 'text-white');
+    }
+
+    function filterProjects(category) {
+        projectCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeIn 0.5s ease';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    allFilterBtn.addEventListener('click', () => {
+        setActiveFilter(allFilterBtn);
+        filterProjects('all');
+    });
+
+    mlFilterBtn.addEventListener('click', () => {
+        setActiveFilter(mlFilterBtn);
+        filterProjects('ml');
+    });
+
+    webFilterBtn.addEventListener('click', () => {
+        setActiveFilter(webFilterBtn);
+        filterProjects('web');
+    });
+
+    researchFilterBtn.addEventListener('click', () => {
+        setActiveFilter(researchFilterBtn);
+        filterProjects('research');
+    });
+
+    // Initialize with all projects shown
+    setActiveFilter(allFilterBtn);
+    filterProjects('all');
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+        } else {
+            mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+        }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('bg-[#0F0F0F]', 'shadow-md');
+            navbar.classList.remove('bg-transparent');
+        } else {
+            navbar.classList.remove('bg-[#0F0F0F]', 'shadow-md');
+            navbar.classList.add('bg-transparent');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+            }
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Active link highlighting
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', function() {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
 });
 </script>
 </body>
