@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Rothschild - Computer Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#6366F1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(10px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+body {
+font-family: 'Inter', sans-serif;
+background-color: #1A1A1A;
+color: #E0E0E0;
+scroll-behavior: smooth;
+}
+.mono {
+font-family: 'Space Mono', monospace;
+}
+.skill-tag {
+background-color: rgba(79, 70, 229, 0.15);
+border: 1px solid rgba(79, 70, 229, 0.3);
+transition: all 0.3s ease;
+}
+.skill-tag:hover {
+background-color: rgba(79, 70, 229, 0.25);
+}
+.project-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.project-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+background: rgba(255, 255, 255, 0.05);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: "";
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #4F46E5;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+width: 100%;
+}
+.timeline-item {
+position: relative;
+}
+.timeline-item::before {
+content: "";
+position: absolute;
+left: -32px;
+top: 8px;
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background-color: #4F46E5;
+z-index: 1;
+}
+.timeline-item::after {
+content: "";
+position: absolute;
+left: -26px;
+top: 20px;
+width: 1px;
+height: calc(100% + 20px);
+background-color: rgba(79, 70, 229, 0.3);
+z-index: 0;
+}
+.timeline-item:last-child::after {
+display: none;
+}
+input, textarea {
+background-color: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.1);
+color: #E0E0E0;
+transition: all 0.3s ease;
+}
+input:focus, textarea:focus {
+background-color: rgba(255, 255, 255, 0.08);
+border-color: rgba(79, 70, 229, 0.5);
+outline: none;
+}
+.scroll-indicator {
+animation: bounce 2s infinite;
+}
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {
+transform: translateY(0);
+}
+40% {
+transform: translateY(-10px);
+}
+60% {
+transform: translateY(-5px);
+}
+}
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 transition-all duration-300" id="navbar">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<a href="#" class="text-xl font-semibold text-white">AR</a>
+<div class="hidden md:flex space-x-8">
+<a href="#about" class="nav-link text-white hover:text-primary transition-colors">About</a>
+<a href="#education" class="nav-link text-white hover:text-primary transition-colors">Education</a>
+<a href="#research" class="nav-link text-white hover:text-primary transition-colors">Research</a>
+<a href="#projects" class="nav-link text-white hover:text-primary transition-colors">Projects</a>
+<a href="#skills" class="nav-link text-white hover:text-primary transition-colors">Skills</a>
+<a href="#contact" class="nav-link text-white hover:text-primary transition-colors">Contact</a>
+</div>
+<button class="md:hidden text-white w-10 h-10 flex items-center justify-center" id="mobileMenuButton">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+<!-- Mobile Menu -->
+<div class="md:hidden hidden bg-[#1A1A1A] border-t border-gray-800" id="mobileMenu">
+<div class="px-6 py-4 space-y-4">
+<a href="#about" class="block text-white hover:text-primary transition-colors py-2">About</a>
+<a href="#education" class="block text-white hover:text-primary transition-colors py-2">Education</a>
+<a href="#research" class="block text-white hover:text-primary transition-colors py-2">Research</a>
+<a href="#projects" class="block text-white hover:text-primary transition-colors py-2">Projects</a>
+<a href="#skills" class="block text-white hover:text-primary transition-colors py-2">Skills</a>
+<a href="#contact" class="block text-white hover:text-primary transition-colors py-2">Contact</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="min-h-screen flex items-center justify-center relative overflow-hidden" style="background-image: linear-gradient(to right, rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.7)), url('https://readdy.ai/api/search-image?query=abstract%20digital%20technology%20background%20with%20subtle%20code%20patterns%20and%20neural%20network%20visualization%2C%20dark%20theme%20with%20blue%20and%20purple%20accents%2C%20minimalist%20tech%20aesthetic%20suitable%20for%20computer%20science%20professional&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="max-w-7xl mx-auto px-6 text-center z-10">
+<h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">ALEXANDER ROTHSCHILD</h1>
+<h2 class="text-xl md:text-2xl text-gray-300 mb-8">Master Student in Computer Science</h2>
+<p class="text-lg md:text-xl text-gray-400 mb-10">Humboldt Universität zu Berlin</p>
+<div class="flex justify-center space-x-4">
+<a href="#contact" class="bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-button transition-all whitespace-nowrap">Get in Touch</a>
+<a href="#about" class="bg-transparent border border-white hover:border-primary hover:text-primary text-white px-6 py-3 rounded-button transition-all whitespace-nowrap">Learn More</a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+<div class="w-8 h-12 flex items-center justify-center border-2 border-white rounded-full">
+<div class="w-1 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</header>
+<!-- About Section -->
+<section id="about" class="py-20 bg-[#1A1A1A]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-12 text-center">About Me</h2>
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="md:w-1/3">
+<div class="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-primary">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20academic%20with%20glasses%2C%20serious%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20suitable%20for%20academic%20profile%2C%20realistic%2C%20not%20smiling%2C%20professional%20attire&width=500&height=500&seq=2&orientation=squarish" alt="Alexander Rothschild" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<div class="md:w-2/3">
+<p class="text-lg text-gray-300 mb-6 leading-relaxed">
+I am a Computer Science Master's student at Humboldt Universität zu Berlin, specializing in Artificial Intelligence and Machine Learning. My research focuses on developing robust algorithms for computer vision applications and exploring the intersection of deep learning and natural language processing.
+</p>
+<p class="text-lg text-gray-300 mb-8 leading-relaxed">
+With a background in mathematics and software engineering, I approach problems with analytical rigor and creative problem-solving. I'm passionate about creating technology that makes a meaningful impact on society, particularly in healthcare and accessibility domains.
+</p>
+<div class="flex flex-wrap gap-3">
+<div class="bg-opacity-10 bg-primary px-4 py-2 rounded-full text-sm">
+<span class="text-primary font-medium">Machine Learning</span>
+</div>
+<div class="bg-opacity-10 bg-primary px-4 py-2 rounded-full text-sm">
+<span class="text-primary font-medium">Computer Vision</span>
+</div>
+<div class="bg-opacity-10 bg-primary px-4 py-2 rounded-full text-sm">
+<span class="text-primary font-medium">Natural Language Processing</span>
+</div>
+<div class="bg-opacity-10 bg-primary px-4 py-2 rounded-full text-sm">
+<span class="text-primary font-medium">Algorithm Design</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education Section -->
+<section id="education" class="py-20 bg-[#121212]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-12 text-center">Education</h2>
+<div class="flex justify-center">
+<div class="max-w-3xl w-full">
+<div class="ml-8 pl-8 border-l border-gray-800">
+<div class="timeline-item mb-12">
+<h3 class="text-xl font-semibold text-white mb-2">MSc in Computer Science</h3>
+<p class="text-primary font-medium mb-2">Humboldt Universität zu Berlin</p>
+<p class="text-gray-400 mb-4">2023 - Present</p>
+<p class="text-gray-300 mb-4">Specialization in Artificial Intelligence and Machine Learning. Current GPA: 3.9/4.0</p>
+<div class="bg-[#1A1A1A] p-4 rounded">
+<h4 class="text-white font-medium mb-3">Key Coursework:</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Advanced Machine Learning</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Deep Learning Architectures</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Computer Vision</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Natural Language Processing</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Algorithmic Game Theory</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Distributed Systems</span>
+</div>
+</div>
+</div>
+</div>
+<div class="timeline-item mb-12">
+<h3 class="text-xl font-semibold text-white mb-2">BSc in Computer Science</h3>
+<p class="text-primary font-medium mb-2">Technical University of Munich</p>
+<p class="text-gray-400 mb-4">2019 - 2023</p>
+<p class="text-gray-300 mb-4">Graduated with Honors. GPA: 3.8/4.0</p>
+<div class="bg-[#1A1A1A] p-4 rounded">
+<h4 class="text-white font-medium mb-3">Key Coursework:</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Data Structures & Algorithms</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Operating Systems</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Database Systems</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Computer Networks</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Software Engineering</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-300">Introduction to AI</span>
+</div>
+</div>
+</div>
+</div>
+<div class="timeline-item">
+<h3 class="text-xl font-semibold text-white mb-2">Exchange Program</h3>
+<p class="text-primary font-medium mb-2">ETH Zürich</p>
+<p class="text-gray-400 mb-4">Spring 2022</p>
+<p class="text-gray-300">Semester abroad focusing on advanced topics in machine learning and computational mathematics.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Research Section -->
+<section id="research" class="py-20 bg-[#1A1A1A]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-12 text-center">Research Interests</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-brain-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Deep Learning Interpretability</h3>
+<p class="text-gray-300">Developing methods to make deep learning models more transparent and interpretable, focusing on visualization techniques and attribution methods.</p>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-eye-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Computer Vision</h3>
+<p class="text-gray-300">Exploring efficient object detection and segmentation algorithms for real-time applications, with a focus on medical imaging and autonomous systems.</p>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-chat-3-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Natural Language Processing</h3>
+<p class="text-gray-300">Investigating multilingual language models and cross-lingual transfer learning for low-resource languages and specialized domains.</p>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-shield-check-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Robust AI Systems</h3>
+<p class="text-gray-300">Developing techniques to enhance the robustness of AI systems against adversarial attacks and distribution shifts in real-world environments.</p>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-health-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">AI in Healthcare</h3>
+<p class="text-gray-300">Applying machine learning techniques to healthcare problems, including disease prediction, medical image analysis, and personalized treatment recommendations.</p>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center text-primary mb-4">
+<i class="ri-robot-line ri-2x"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Reinforcement Learning</h3>
+<p class="text-gray-300">Studying sample-efficient reinforcement learning algorithms for complex decision-making tasks and multi-agent systems.</p>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="text-2xl font-semibold text-white mb-6 text-center">Publications</h3>
+<div class="space-y-6">
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800">
+<h4 class="text-lg font-medium text-white mb-2">Efficient Attention Mechanisms for Vision Transformers in Medical Image Segmentation</h4>
+<p class="text-gray-400 mb-3">International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI), 2024 (Under Review)</p>
+<p class="text-gray-300 mb-4">Co-authors: Dr. Elena Müller, Prof. David Chen</p>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-file-paper-2-line"></i>
+</span>
+<span>Preprint</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+</div>
+</div>
+<div class="bg-[#121212] p-6 rounded-lg border border-gray-800">
+<h4 class="text-lg font-medium text-white mb-2">Cross-lingual Transfer Learning for Low-resource Languages: A Case Study on Germanic Languages</h4>
+<p class="text-gray-400 mb-3">Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023</p>
+<p class="text-gray-300 mb-4">Co-authors: Prof. Sarah Johnson, Dr. Thomas Weber</p>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-file-paper-2-line"></i>
+</span>
+<span>Paper</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-[#121212]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-4 text-center">Projects</h2>
+<p class="text-gray-400 mb-12 text-center max-w-2xl mx-auto">A selection of my academic and personal projects exploring various aspects of computer science and artificial intelligence.</p>
+<div class="flex justify-center mb-8">
+<div class="inline-flex p-1 bg-[#1A1A1A] rounded-full">
+<button id="allFilter" class="px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap">All Projects</button>
+<button id="mlFilter" class="px-4 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap">Machine Learning</button>
+<button id="webFilter" class="px-4 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap">Web Development</button>
+<button id="researchFilter" class="px-4 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap">Research</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="project-card rounded-lg overflow-hidden" data-category="research">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=medical%20image%20segmentation%20visualization%2C%20brain%20MRI%20scan%20with%20colored%20segmentation%20overlay%2C%20professional%20medical%20imaging%20display%20with%20high%20contrast%20and%20detailed%20visualization%2C%20dark%20background%20with%20blue%20highlights%2C%20technical%20and%20professional&width=600&height=400&seq=3&orientation=landscape" alt="Medical Image Segmentation" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Medical Image Segmentation</h3>
+<p class="text-gray-300 mb-4">Developed a deep learning model for automatic segmentation of brain tumors in MRI scans, achieving state-of-the-art performance on the BraTS dataset.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">PyTorch</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Computer Vision</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">U-Net</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-external-link-line"></i>
+</span>
+<span>Demo</span>
+</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden" data-category="research">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=natural%20language%20processing%20visualization%2C%20text%20classification%20and%20sentiment%20analysis%20interface%2C%20dark%20theme%20with%20colorful%20text%20highlights%20and%20connections%20between%20words%2C%20professional%20NLP%20dashboard%20with%20graphs%20and%20text%20analysis%2C%20technical%20and%20modern&width=600&height=400&seq=4&orientation=landscape" alt="Multilingual Sentiment Analysis" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Multilingual Sentiment Analysis</h3>
+<p class="text-gray-300 mb-4">Built a transformer-based model for sentiment analysis across 10 European languages, with a focus on cross-lingual transfer learning.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Hugging Face</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">NLP</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">BERT</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-external-link-line"></i>
+</span>
+<span>Paper</span>
+</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden" data-category="research">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=reinforcement%20learning%20visualization%2C%20robot%20navigation%20in%20a%20complex%20environment%2C%203D%20simulation%20with%20path%20planning%20and%20obstacle%20avoidance%2C%20dark%20theme%20with%20blue%20and%20purple%20highlights%20showing%20robots%20decision%20making%20process%2C%20technical%20and%20futuristic&width=600&height=400&seq=5&orientation=landscape" alt="Reinforcement Learning for Robotics" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">RL for Robot Navigation</h3>
+<p class="text-gray-300 mb-4">Implemented a reinforcement learning algorithm for efficient robot navigation in complex environments with dynamic obstacles.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">TensorFlow</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">RL</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">ROS</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-youtube-line"></i>
+</span>
+<span>Video</span>
+</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden" data-category="web">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=data%20visualization%20dashboard%20with%20multiple%20charts%20and%20graphs%2C%20dark%20theme%20with%20blue%20accents%2C%20professional%20analytics%20interface%20showing%20complex%20data%20patterns%2C%20interactive%20visualization%20tools%2C%20technical%20and%20clean%20design&width=600&height=400&seq=6&orientation=landscape" alt="Data Visualization Platform" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Data Visualization Platform</h3>
+<p class="text-gray-300 mb-4">Created an interactive web platform for visualizing complex scientific datasets, with support for customizable charts and real-time collaboration.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">React</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">D3.js</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Node.js</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-external-link-line"></i>
+</span>
+<span>Live Demo</span>
+</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden" data-category="research">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=explainable%20AI%20visualization%2C%20neural%20network%20interpretation%20with%20attention%20maps%20and%20feature%20visualization%2C%20dark%20theme%20with%20colorful%20highlights%20showing%20model%20decision%20making%20process%2C%20technical%20dashboard%20for%20AI%20transparency%2C%20professional%20and%20detailed&width=600&height=400&seq=7&orientation=landscape" alt="Explainable AI Toolkit" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Explainable AI Toolkit</h3>
+<p class="text-gray-300 mb-4">Developed a comprehensive toolkit for interpreting and visualizing deep learning models, including gradient-based attribution methods and attention visualization.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">PyTorch</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Captum</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Flask</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-external-link-line"></i>
+</span>
+<span>Documentation</span>
+</a>
+</div>
+</div>
+</div>
+<div class="project-card rounded-lg overflow-hidden" data-category="research">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=privacy-preserving%20machine%20learning%20visualization%2C%20federated%20learning%20system%20with%20encrypted%20data%20exchange%2C%20dark%20theme%20with%20secure%20data%20visualization%20showing%20privacy%20protection%20mechanisms%2C%20technical%20dashboard%20for%20secure%20AI%20training%2C%20professional%20and%20modern&width=600&height=400&seq=8&orientation=landscape" alt="Privacy-Preserving ML" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Privacy-Preserving ML</h3>
+<p class="text-gray-300 mb-4">Implemented federated learning algorithms with differential privacy guarantees for training machine learning models on sensitive healthcare data.</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">TensorFlow Federated</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Differential Privacy</span>
+<span class="text-xs bg-opacity-10 bg-primary text-primary px-2 py-1 rounded-full">Python</span>
+</div>
+<div class="flex justify-between">
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-github-line"></i>
+</span>
+<span>Code</span>
+</a>
+<a href="#" class="text-primary hover:text-primary-dark transition-colors flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-file-paper-2-line"></i>
+</span>
+<span>Paper</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<a href="#" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
+<span>View All Projects</span>
+<span class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-[#1A1A1A]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-12 text-center">Skills & Expertise</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-primary mr-2">
+<i class="ri-code-s-slash-line ri-lg"></i>
+</div>
+Programming Languages
+</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">Python</span>
+<span class="text-primary">Expert</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">C++</span>
+<span class="text-primary">Advanced</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">JavaScript</span>
+<span class="text-primary">Advanced</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">Java</span>
+<span class="text-primary">Intermediate</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">SQL</span>
+<span class="text-primary">Advanced</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-gray-300 mono">R</span>
+<span class="text-primary">Intermediate</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-primary mr-2">
+<i class="ri-tools-line ri-lg"></i>
+</div>
+Technologies & Frameworks
+</h3>
+<div class="flex flex-wrap gap-3">
+<div class="skill-tag px-4 py-2 rounded mono text-sm">PyTorch</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">TensorFlow</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Scikit-learn</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Pandas</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">NumPy</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">OpenCV</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Hugging Face</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Docker</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Kubernetes</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Git</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">React</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Node.js</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Flask</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Django</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">PostgreSQL</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">MongoDB</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">AWS</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">GCP</div>
+<div class="skill-tag px-4 py-2 rounded mono text-sm">Linux</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-primary mr-2">
+<i class="ri-user-settings-line ri-lg"></i>
+</div>
+Soft Skills & Languages
+</h3>
+<div class="space-y-6">
+<div>
+<h4 class="text-white font-medium mb-3">Languages</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-gray-300">English</span>
+<div class="flex space-x-1">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-gray-300">German</span>
+<div class="flex space-x-1">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-gray-700"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-gray-300">French</span>
+<div class="flex space-x-1">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-gray-700"></div>
+<div class="w-3 h-3 rounded-full bg-gray-700"></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-white font-medium mb-3">Soft Skills</h4>
+<ul class="space-y-2">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span class="text-gray-300">Problem Solving & Critical Thinking</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span class="text-gray-300">Research & Scientific Writing</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span class="text-gray-300">Team Collaboration & Leadership</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span class="text-gray-300">Project Management</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span class="text-gray-300">Public Speaking & Presentation</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-[#121212]">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-12 text-center">Get in Touch</h2>
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/2">
+<form class="space-y-6">
+<div>
+<label for="name" class="block text-gray-300 mb-2">Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your name">
+</div>
+<div>
+<label for="email" class="block text-gray-300 mb-2">Email</label>
+<input type="email" id="email" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your email address">
+</div>
+<div>
+<label for="subject" class="block text-gray-300 mb-2">Subject</label>
+<input type="text" id="subject" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Subject of your message">
+</div>
+<div>
+<label for="message" class="block text-gray-300 mb-2">Message</label>
+<textarea id="message" rows="5" class="w-full px-4 py-3 rounded border-none focus:ring-2 focus:ring-primary text-sm" placeholder="Your message"></textarea>
+</div>
+<button type="submit" class="bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-button transition-all whitespace-nowrap">Send Message</button>
+</form>
+</div>
+<div class="md:w-1/2">
+<div class="bg-[#1A1A1A] p-8 rounded-lg h-full">
+<h3 class="text-xl font-semibold text-white mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4 bg-opacity-10 bg-primary rounded-full">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-white font-medium mb-1">Location</h4>
+<p class="text-gray-300">Department of Computer Science<br>Humboldt Universität zu Berlin<br>Unter den Linden 6, 10099 Berlin, Germany</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4 bg-opacity-10 bg-primary rounded-full">
+<i class="ri-mail-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-white font-medium mb-1">Email</h4>
+<a href="mailto:alexander.rothschild@informatik.hu-berlin.de" class="text-gray-300 hover:text-primary transition-colors">alexander.rothschild@informatik.hu-berlin.de</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4 bg-opacity-10 bg-primary rounded-full">
+<i class="ri-time-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-white font-medium mb-1">Office Hours</h4>
+<p class="text-gray-300">Tuesday & Thursday<br>14:00 - 16:00<br>Or by appointment</p>
+</div>
+</div>
+<div class="pt-6">
+<h4 class="text-white font-medium mb-4">Connect with me</h4>
+<div class="flex space-x-4">
+<a href="javascript:void(0)" id="githubLink" class="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-10 bg-white text-white hover:bg-primary hover:text-white transition-all">
+<i class="ri-github-fill ri-lg"></i>
+</a>
+<!-- GitHub Modal -->
+<div id="githubModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+<div class="bg-[#1A1A1A] rounded-lg max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
+<div class="p-6 border-b border-gray-800">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-semibold text-white">GitHub Repositories</h3>
+<button id="closeGithubModal" class="text-gray-400 hover:text-white">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-center space-x-4 mb-6">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20academic%20with%20glasses%2C%20serious%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20suitable%20for%20academic%20profile&width=100&height=100&seq=9&orientation=squarish" alt="Alexander Rothschild" class="w-16 h-16 rounded-full">
+<div>
+<h4 class="text-white font-semibold">Alexander Rothschild</h4>
+<p class="text-gray-400">@akrothschild</p>
+</div>
+<a href="https://github.com/akrothschild" target="_blank" class="ml-auto bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button transition-all whitespace-nowrap">View Profile</a>
+</div>
+<div class="space-y-4">
+<div class="bg-[#121212] p-4 rounded-lg">
+<div class="flex items-start justify-between">
+<div>
+<h5 class="text-white font-medium mb-2">medical-image-segmentation</h5>
+<p class="text-gray-400 text-sm mb-3">Deep learning model for automatic segmentation of brain tumors in MRI scans using PyTorch.</p>
+</div>
+<span class="text-primary text-sm">★ 128</span>
+</div>
+<div class="flex items-center space-x-4 text-sm">
+<span class="text-gray-400"><i class="ri-git-branch-line mr-1"></i>24</span>
+<span class="flex items-center"><span class="w-3 h-3 bg-[#3572A5] rounded-full mr-2"></span>Python</span>
+</div>
+</div>
+<div class="bg-[#121212] p-4 rounded-lg">
+<div class="flex items-start justify-between">
+<div>
+<h5 class="text-white font-medium mb-2">multilingual-sentiment</h5>
+<p class="text-gray-400 text-sm mb-3">Transformer-based model for cross-lingual sentiment analysis across European languages.</p>
+</div>
+<span class="text-primary text-sm">★ 86</span>
+</div>
+<div class="flex items-center space-x-4 text-sm">
+<span class="text-gray-400"><i class="ri-git-branch-line mr-1"></i>15</span>
+<span class="flex items-center"><span class="w-3 h-3 bg-[#3572A5] rounded-full mr-2"></span>Python</span>
+</div>
+</div>
+<div class="bg-[#121212] p-4 rounded-lg">
+<div class="flex items-start justify-between">
+<div>
+<h5 class="text-white font-medium mb-2">privacy-preserving-ml</h5>
+<p class="text-gray-400 text-sm mb-3">Implementation of federated learning algorithms with differential privacy guarantees.</p>
+</div>
+<span class="text-primary text-sm">★ 94</span>
+</div>
+<div class="flex items-center space-x-4 text-sm">
+<span class="text-gray-400"><i class="ri-git-branch-line mr-1"></i>18</span>
+<span class="flex items-center"><span class="w-3 h-3 bg-[#3572A5] rounded-full mr-2"></span>Python</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-10 bg-white text-white hover:bg-primary hover:text-white transition-all">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-10 bg-white text-white hover:bg-primary hover:text-white transition-all">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-10 bg-white text-white hover:bg-primary hover:text-white transition-all">
+<i class="ri-google-scholar-fill ri-lg"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-10 bg-[#0F0F0F] border-t border-gray-800">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<p class="text-gray-400">© 2025 Alexander Rothschild. All rights reserved.</p>
+</div>
+<div class="flex space-x-6">
+<a href="#about" class="text-gray-400 hover:text-primary transition-colors">About</a>
+<a href="#education" class="text-gray-400 hover:text-primary transition-colors">Education</a>
+<a href="#research" class="text-gray-400 hover:text-primary transition-colors">Research</a>
+<a href="#projects" class="text-gray-400 hover:text-primary transition-colors">Projects</a>
+<a href="#contact" class="text-gray-400 hover:text-primary transition-colors">Contact</a>
+</div>
+<div class="mt-6 md:mt-0">
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-10 bg-white text-white hover:bg-primary hover:text-white transition-all">
+<i class="ri-arrow-up-line ri-lg"></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// GitHub Modal Functionality
+const githubLink = document.getElementById('githubLink');
+const githubModal = document.getElementById('githubModal');
+const closeGithubModal = document.getElementById('closeGithubModal');
+githubLink.addEventListener('click', () => {
+githubModal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+});
+closeGithubModal.addEventListener('click', () => {
+githubModal.classList.add('hidden');
+document.body.style.overflow = 'auto';
+});
+githubModal.addEventListener('click', (e) => {
+if (e.target === githubModal) {
+githubModal.classList.add('hidden');
+document.body.style.overflow = 'auto';
+}
+});
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape' && !githubModal.classList.contains('hidden')) {
+githubModal.classList.add('hidden');
+document.body.style.overflow = 'auto';
+}
+});
+const allFilterBtn = document.getElementById('allFilter');
+const mlFilterBtn = document.getElementById('mlFilter');
+const webFilterBtn = document.getElementById('webFilter');
+const researchFilterBtn = document.getElementById('researchFilter');
+const projectCards = document.querySelectorAll('.project-card');
+function setActiveFilter(activeBtn) {
+[allFilterBtn, mlFilterBtn, webFilterBtn, researchFilterBtn].forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('text-gray-300');
+});
+activeBtn.classList.remove('text-gray-300');
+activeBtn.classList.add('bg-primary', 'text-white');
+}
+allFilterBtn.addEventListener('click', () => {
+setActiveFilter(allFilterBtn);
+projectCards.forEach(card => {
+card.style.display = 'block';
+card.style.animation = 'fadeIn 0.5s ease';
+});
+});
+mlFilterBtn.addEventListener('click', () => {
+setActiveFilter(mlFilterBtn);
+projectCards.forEach(card => {
+if (card.getAttribute('data-category') === 'ml') {
+card.style.display = 'block';
+card.style.animation = 'fadeIn 0.5s ease';
+} else {
+card.style.display = 'none';
+}
+});
+});
+webFilterBtn.addEventListener('click', () => {
+setActiveFilter(webFilterBtn);
+projectCards.forEach(card => {
+if (card.getAttribute('data-category') === 'web') {
+card.style.display = 'block';
+card.style.animation = 'fadeIn 0.5s ease';
+} else {
+card.style.display = 'none';
+}
+});
+});
+researchFilterBtn.addEventListener('click', () => {
+setActiveFilter(researchFilterBtn);
+projectCards.forEach(card => {
+if (card.getAttribute('data-category') === 'research') {
+card.style.display = 'block';
+card.style.animation = 'fadeIn 0.5s ease';
+} else {
+card.style.display = 'none';
+}
+});
+});
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobileMenuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+if (mobileMenu.classList.contains('hidden')) {
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+} else {
+mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+}
+});
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+navbar.classList.add('bg-[#0F0F0F]', 'shadow-md');
+navbar.classList.remove('bg-transparent');
+} else {
+navbar.classList.remove('bg-[#0F0F0F]', 'shadow-md');
+navbar.classList.add('bg-transparent');
+}
+});
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+// Close mobile menu if open
+if (!mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+}
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+// Active link highlighting
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', function() {
+let current = '';
+sections.forEach(section => {
+const sectionTop = section.offsetTop;
+const sectionHeight = section.clientHeight;
+if (window.scrollY >= sectionTop - 100) {
+current = section.getAttribute('id');
+}
+});
+navLinks.forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${current}`) {
+link.classList.add('active');
+}
+});
+});
+});
+</script>
+</body>
+</html>
